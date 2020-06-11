@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Торговый центр</title>
+		<title>Realty scoring</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
@@ -18,80 +18,72 @@
 				<!-- Main -->
 					<section id="main">
 						
-						<div id="log_in">
+						<div id="submit_block">
 							<header>
-								<span class="avatar"><img src="images/avatar.svg" alt="icon"/></span>
-								<h1>Система оценки продаж продукции<br>в торговом центре</h1>
-								<p>Вход в систему</p>
+								<h1>Разработка веб-сервиса<br>для прогноза стоимости недвижимости<br>с применением нейронной сети</h1>
 							</header>
-							
-							<div class="exeption ent">
-								<p class="error" id="exep_1">Пользователь с таким именем не найден!</p>
-								<p class="error" id="exep_2">Неверный пароль!</p>
-							</div>
 							
 							<form class="enter" method="post">
-								<input type="hidden" name="form" value="user" maxlength="0"/>
+
 								<div class="field">
-									<input class="input" type="text" name="login" placeholder="Логин" maxlength="20" />
+									<div class="select-wrapper">
+										<select class="input" name="city" id="city_field">
+											<option value="default">Город</option>
+											<option value="Брест">Брест</option>
+											<option value="Гродно">Гродно</option>
+											<option value="Витебск">Витебск</option>
+											<option value="Могилев">Могилев</option>
+											<option value="Гомель">Гомель</option>
+											<option value="Минск">Минск</option>
+										</select>
+									</div>
 								</div>
 								<div class="field">
-									<input class="input" type="password" name="password" placeholder="Пароль" maxlength="20" />
+									<div class="select-wrapper">
+										<select class="input" name="district" id="district_field" disabled>
+											<option value="default">Район</option>
+										</select>
+									</div>
+								</div>
+								<div class="field">
+									<input class="input" type="text" name="total_area" placeholder="Общая площадь" maxlength="6" />
+									<div class="hint">До 6 символов.<br>Только целые и дробные числа.</div>
+								</div>
+								<div class="field">
+									<input class="input" type="text" name="number_of_rooms" placeholder="Количество комнат" maxlength="3" />
+									<div class="hint">До 3 символов.<br>Только целые числа.</div>
+								</div>
+								<div class="field">
+									<div class="select-wrapper">
+										<select class="input" name="walling" id="walling_field">
+											<option value="default">Материал стен</option>
+											<option value="panel">Панель</option>
+											<option value="brick">Кирпич</option>
+											<option value="monolith">Монолит</option>
+											<option value="block">Блок</option>
+										</select>
+									</div>
+								</div>
+								<div class="field">
+									<input type="checkbox" id="resale_field" name="resale" />
+									<label for="resale_field">Вторичка</label>
 								</div>
 								<ul class="actions">
-									<li><input class="button_log bad" id="log" type="submit" value="Вход"></li>
-									<li><input class="button_reg" id="reg" type="button" value="Регистрация"></li>
+									<li><input class="button_submit bad" id="sub" type="submit" value="Отправить"></li>
 								</ul>
+
 							</form>
+
 						</div>
-						
-						<div id="log_up">
-							<header>									
-								<h1>Регистрация</h1>
-							</header>
-							
-							<div class="exeption reg">
-								<p class="error" id="exep_1">Введенный логин уже занят!</p>
-								<p class="error" id="exep_2">Введенный логин некорректен!</p>
-								<p class="error" id="exep_3">Введенный email некорректен!</p>
-								<p class="error" id="exep_4">Введенный пароль некорректен!</p>
-								<p class="error" id="exep_5">Введенные email-лы не совпадают!</p>
-								<p class="error" id="exep_6">Введенные пароли не совпадают!</p>
-							</div>
-							
-							<form class="registration" method="post">								
-								<input type="hidden" name="form" value="registration" maxlength="0" />
-								<div class="field">									
-									<input class="input" type="text" name="login" placeholder="Логин" maxlength="20" />
-									<div class="hint">От 3 до 20 символов.<br>Латинские буквы, цифры, знаки тире и подчеркивания.</div>
-								</div>
-								<div class="field">
-									<input class="input" type="text" name="email" placeholder="Email" maxlength="20" />
-									<div class="hint">Например: example@mail.com</div>
-								</div>
-								<div class="field">
-									<input class="input" type="text" name="email_asset" placeholder="Повторите email" maxlength="20" />
-								</div>
-								<div class="field">
-									<input class="input" type="password" name="password" placeholder="Пароль" maxlength="20" />
-									<div class="hint">От 3 до 20 символов.<br>Латинские буквы, цифры, знаки тире и подчеркивания.</div>
-								</div>
-								<div class="field">
-									<input class="input" type="password" name="password_asset" placeholder="Повторите пароль" maxlength="20" />
-								</div>
-								<ul class="actions">
-									<li><input class="button_reg bad" type="submit" value="Зарегистрироваться"></li>
-									<li><input class="button_cancel" type="button" value="Отмена"></li>
-								</ul>
-							</form>
-						</div>
+
+						<h1 id="prediction_result"></h1>
 						
 					</section>
 
 				<!-- Footer -->
 					<footer id="footer">
 						<ul class="copyright">
-							<li>Зоткин Александр</li><li>2016</li>
+							<li>Зоткин Александр</li><li>2020</li>
 						</ul>
 					</footer>
 
@@ -102,8 +94,7 @@
 			<!-- Libs -->
 			<script src="assets/libs/jquery-1.8.2.min.js"></script>
 			<!-- My scripts -->
-			<script src="assets/js/user-form.js"></script>
-			<script src="assets/js/reg-form.js"></script>
+			<script src="assets/js/score-form.js"></script>
 			<!-- Other -->
 			<script>
 				if ('addEventListener' in window) {
